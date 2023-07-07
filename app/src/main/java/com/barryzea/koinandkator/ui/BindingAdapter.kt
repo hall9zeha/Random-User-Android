@@ -3,6 +3,7 @@ package com.barryzea.koinandkator.ui
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.util.Log
+import android.view.View
 import android.widget.ImageView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
@@ -25,38 +26,19 @@ import com.bumptech.glide.request.target.Target
  **/
 @BindingAdapter("imageUrl")
 fun setImage(imageView:ImageView, url:String?){
-
-
     url?.let {
         val imgUri = it.toUri().buildUpon().scheme("https").build()
         GlideApp.with(imageView.context)
             .load(imgUri)
             .placeholder(R.drawable.ic_launcher_background)
-            .listener(object: RequestListener<Drawable>{
-                override fun onLoadFailed(
-                    e: GlideException?,
-                    model: Any?,
-                    target: Target<Drawable>?,
-                    isFirstResource: Boolean
-                ): Boolean {
-                    Log.e("GLIDE_LOG", e?.message.toString() )
-                    return false
-                }
-
-                override fun onResourceReady(
-                    resource: Drawable?,
-                    model: Any?,
-                    target: Target<Drawable>?,
-                    dataSource: DataSource?,
-                    isFirstResource: Boolean
-                ): Boolean {
-                   return false
-                }
-            })
             .centerCrop()
 
             .error(R.drawable.ic_launcher_foreground)
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(imageView)
     }
+}
+@BindingAdapter("isGone")
+fun isGone(view: View, status:Boolean ){
+   view.visibility=  if(status)  View.GONE else View.VISIBLE
 }

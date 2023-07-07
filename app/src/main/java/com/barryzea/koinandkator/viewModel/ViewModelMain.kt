@@ -19,17 +19,17 @@ import kotlinx.coroutines.launch
 class ViewModelMain(private val useCase:FetchUserUseCase): ViewModel() {
     private var _user:MutableLiveData<UserDomain> = MutableLiveData()
     val user:LiveData<UserDomain> get() = _user
-
     private var _isLoading:MutableLiveData<Boolean> = MutableLiveData(true)
     val isLoading:LiveData<Boolean> get() = _isLoading
 
     fun fetchRandomUser(){
+        _isLoading.postValue(true)
         viewModelScope.launch {
             val randomList = useCase.fetchRandomUser()
            if(randomList.isNotEmpty()){
                _isLoading.postValue(false)
-                _user.postValue(randomList[0])
-               Log.e("TAG", user.value?.image.toString() )
+               _user.postValue(randomList[0])
+
            }
         }
     }

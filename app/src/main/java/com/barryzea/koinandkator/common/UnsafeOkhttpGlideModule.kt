@@ -20,10 +20,10 @@ import java.io.InputStream
 @GlideModule
 class AppGlide: AppGlideModule() {
     override fun registerComponents(context: Context, glide: Glide, registry: Registry) {
-        val unsafeClient= getUnsafeOkHttp()
+        //val unsafeClient= getUnsafeOkHttp()
         registry.replace(
             GlideUrl::class.java, InputStream::class.java,
-            OkHttpUrlLoader.Factory(unsafeClient!!)
+            OkHttpUrlLoader.Factory(getUnsafeOkHttpClient().build())
         )
     }
 }
