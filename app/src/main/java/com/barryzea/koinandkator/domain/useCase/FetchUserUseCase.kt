@@ -1,6 +1,6 @@
 package com.barryzea.koinandkator.domain.useCase
 
-import com.barryzea.koinandkator.data.entities.RandomUser
+import com.barryzea.koinandkator.common.CustomResponse
 import com.barryzea.koinandkator.domain.entities.UserDomain
 
 /**
@@ -10,5 +10,5 @@ import com.barryzea.koinandkator.domain.entities.UserDomain
  *
  **/
 interface FetchUserUseCase {
-    suspend fun fetchRandomUser():List<UserDomain>
-}
+    suspend fun fetchRandomUser():CustomResponse
+ }

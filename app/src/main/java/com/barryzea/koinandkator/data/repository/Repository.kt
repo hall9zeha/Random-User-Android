@@ -11,4 +11,5 @@ import retrofit2.Response
  **/
 interface Repository {
     suspend fun fetchRandomUser():Response<Results>
+
 }

@@ -1,7 +1,10 @@
 package com.barryzea.koinandkator.common
 
 import android.annotation.SuppressLint
+import com.barryzea.koinandkator.data.entities.Results
+import com.barryzea.koinandkator.domain.entities.UserDomain
 import okhttp3.OkHttpClient
+import retrofit2.Response
 import java.security.SecureRandom
 import java.security.cert.CertificateException
 import java.security.cert.X509Certificate
@@ -18,6 +21,9 @@ import javax.net.ssl.X509TrustManager
  *
  **/
 fun getUnsafeOkHttpClient(): OkHttpClient.Builder {
+    //Ya que accederemos sin una llave/API KEY
+    //esta función nos ayudará para acceder a la URL con certificado Https Autofirmado de la API Random User
+    //así como para la obtención de las imágenes con Glide
     return try {
         // Create a trust manager that does not validate certificate chains
         val trustAllCerts = arrayOf<TrustManager>(
@@ -57,4 +63,8 @@ fun getUnsafeOkHttpClient(): OkHttpClient.Builder {
     }
 
 
+}
+sealed class CustomResponse{
+    class ResponseSuccess(val data: List<UserDomain>) : CustomResponse()
+    class ResponseError(val error:Exception):CustomResponse()
 }

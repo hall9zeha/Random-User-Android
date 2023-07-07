@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import com.barryzea.koinandkator.R
 import com.barryzea.koinandkator.databinding.ActivityMainBinding
 import com.barryzea.koinandkator.viewModel.ViewModelMain
+import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
@@ -22,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         setUpObservers()
         setUpDataBinding()
         viewModel.fetchRandomUser()
+
     }
     private fun setUpDataBinding(){
         bind.lifecycleOwner= this
@@ -30,6 +32,9 @@ class MainActivity : AppCompatActivity() {
     private fun setUpObservers(){
         viewModel.user.observe(this){
             Log.e("RANDOM-USER", it.toString() )
+        }
+        viewModel.msg.observe(this){
+            Snackbar.make(bind.root, it,Snackbar.LENGTH_LONG).show()
         }
     }
 }

@@ -1,9 +1,8 @@
 package com.barryzea.koinandkator.domain.useCase
 
-import com.barryzea.koinandkator.data.repository.Repository
-import com.barryzea.koinandkator.data.entities.RandomUser
+import com.barryzea.koinandkator.common.CustomResponse
 import com.barryzea.koinandkator.data.entities.toDomain
-import com.barryzea.koinandkator.domain.entities.UserDomain
+import com.barryzea.koinandkator.data.repository.Repository
 
 /**
  * Project KoinAndKator
@@ -12,13 +11,18 @@ import com.barryzea.koinandkator.domain.entities.UserDomain
  *
  **/
 class FetchUserUseCaseImpl(private val repository:Repository):FetchUserUseCase {
-    override suspend fun fetchRandomUser(): List<UserDomain> {
-        val response = repository.fetchRandomUser()
-        if(response.isSuccessful){
-            response.body()?.let{
-               return it.toDomain()
+    override suspend fun fetchRandomUser(): CustomResponse {
+       try {
+           val response = repository.fetchRandomUser()
+            if(response.isSuccessful){
+                response.body()?.let{
+                    return CustomResponse.ResponseSuccess(it.toDomain())
+                }
             }
-        }
-        return emptyList()
+
+       }catch(e:Exception){
+           return CustomResponse.ResponseError(e)
+       }
+        return CustomResponse.ResponseSuccess(emptyList())
     }
 }

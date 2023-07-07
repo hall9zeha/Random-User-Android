@@ -13,9 +13,6 @@ import retrofit2.converter.gson.GsonConverterFactory
  *
  **/
 class APIServiceImpl:APIService {
-//****************
-
-    //*************
     private val retrofit = Retrofit.Builder()
         .baseUrl(Constants.BASE_URL)
         .client(getUnsafeOkHttpClient().build())

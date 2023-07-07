@@ -17,10 +17,15 @@ import java.io.InputStream
  * Copyright (c) Barry Zea H. All rights reserved.
  *
  **/
+
+
 @GlideModule
 class AppGlide: AppGlideModule() {
     override fun registerComponents(context: Context, glide: Glide, registry: Registry) {
-        //val unsafeClient= getUnsafeOkHttp()
+      /*
+      * Este módulo personalizado de Glide es necesario para poder leer las imágenes desde las url devueltas
+      * desde la API(si no nos dará un error al tratar de obtener la imagen del path), ya que nos permite aceptar el certificado autofirmado HTTPS de la API con la función getUnsafeOkHttpClient()
+      * */
         registry.replace(
             GlideUrl::class.java, InputStream::class.java,
             OkHttpUrlLoader.Factory(getUnsafeOkHttpClient().build())

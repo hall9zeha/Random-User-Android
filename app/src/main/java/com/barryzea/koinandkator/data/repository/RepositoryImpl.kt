@@ -13,5 +13,7 @@ import retrofit2.Response
 class RepositoryImpl(private val apiService:APIService):Repository {
     override suspend fun fetchRandomUser(): Response<Results> {
         return apiService.callApi().fetchRandomUser()
+
     }
+
 }
