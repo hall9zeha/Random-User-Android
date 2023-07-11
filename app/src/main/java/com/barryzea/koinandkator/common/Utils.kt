@@ -65,6 +65,6 @@ fun getUnsafeOkHttpClient(): OkHttpClient.Builder {
 
 }
 sealed class CustomResponse{
-    class ResponseSuccess(val data: List<UserDomain>) : CustomResponse()
-    class ResponseError(val error:Exception):CustomResponse()
+    class ResponseSuccess(val data: List<UserDomain>?) : CustomResponse()
+    class ResponseError(val error:Exception?):CustomResponse()
 }

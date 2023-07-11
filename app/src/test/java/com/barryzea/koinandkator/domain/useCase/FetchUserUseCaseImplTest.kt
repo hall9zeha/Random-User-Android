@@ -1,6 +1,7 @@
 package com.barryzea.koinandkator.domain.useCase
 
 
+import com.barryzea.koinandkator.DatasourceForTest.randomUser
 import com.barryzea.koinandkator.common.CustomResponse
 import com.barryzea.koinandkator.data.entities.Location
 import com.barryzea.koinandkator.data.entities.Name
@@ -64,25 +65,5 @@ class FetchUserUseCaseImplTest:KoinTest {
         assertEquals(anyException,responseError.error)
     }
 
-    companion object{
-        fun createUser()= UserDomain(
-            name="Barry",
-            lastName="Zea",
-            cell="569874565",
-            email="myMail@mail.com",
-            city = "Citadel",
-            country="Laedale"
 
-        )
-        fun randomUser()= Results(listOf(
-            RandomUser(
-                gender="Male",
-                name= Name("","Barry","Zea"),
-                location = Location("",""),
-                email = "mail@mail.com",
-                cell="454654654",
-                picture= Picture("","","jpg")
-            )
-        ))
-    }
 }

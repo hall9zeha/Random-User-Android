@@ -26,15 +26,14 @@ class ViewModelMain(private val useCase:FetchUserUseCase): ViewModel() {
    fun fetchRandomUser(){
         _isLoading.postValue(true)
         viewModelScope.launch {
-            val response = useCase.fetchRandomUser()
-            when (response) {
+            when (val response:CustomResponse = useCase.fetchRandomUser()) {
                 is CustomResponse.ResponseSuccess -> {
                     _isLoading.postValue(false)
-                    _user.postValue(response.data[0])
+                    _user.postValue(response.data!![0])
                 }
                 is CustomResponse.ResponseError -> {
                     _isLoading.postValue(false)
-                    _msg.postValue(response.error.message.toString())
+                    _msg.postValue(response.error?.message.toString())
                 }
             }
         }
