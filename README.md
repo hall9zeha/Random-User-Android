@@ -15,4 +15,4 @@ and clean code.
 ## Screenshots 🖼️
 |||
 |--|--|
-|<p align="center" width="70%"><img src="https://github.com/hall9zeha/Random-User-Android/blob/main/screenshots/screen1.jpg" alt="drawing" width="70%" height="70%"/></p>|<p align="center" width="70%"><img src="https://github.com/hall9zeha/Random-User-Android/blob/main/screenshots/screen2.jpg"  alt="drawing" width="70%" height="70%"/></p>|
+|<p align="center" width="70%"><img src="https://github.com/hall9zeha/Random-User-Android/blob/main/screenshots/screen1.jpg" alt="drawing" width="70%"/></p>|<p align="center" width="70%"><img src="https://github.com/hall9zeha/Random-User-Android/blob/main/screenshots/screen2.jpg"  alt="drawing" width="70%"/></p>|
